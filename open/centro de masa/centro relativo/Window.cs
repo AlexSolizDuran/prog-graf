@@ -9,7 +9,7 @@ namespace centro_relativo
 {
     public class Window : GameWindow
     {                                         //  X     Y    Z                              
-        private readonly CfiguraT figuraT = new (0.1f,0.1f,0.1f);
+        private readonly CfiguraT figuraT = new (0.1f,0.8f,0.1f);
 
         private int _elementBufferObject;
 
