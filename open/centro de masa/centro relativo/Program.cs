@@ -8,7 +8,7 @@ using System;
 
 namespace centro_relativo 
 {
-    public static class  Program
+    public class  Program
     {
         private static void Main()
         {

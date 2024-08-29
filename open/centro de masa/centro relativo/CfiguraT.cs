@@ -11,43 +11,61 @@ namespace centro_relativo
     {  
         private float[] _Vertices ;
         private uint[] _Indices;
-            
+
         public CfiguraT(float X, float Y, float Z)
         {                    //alto,largo,prof   X    Y     Z 
-            Ccubo cubo1 = new(0.3f, 0.7f, 0.4f, X, 0.3f + Y, Z);
-            Ccubo cubo2 = new(0.6f, 0.3f, 0.4f, X, -0.15f + Y, Z);
+            Ccubo cubo1 = new(0.3f, 0.7f, 0.2f, X, 0.3f + Y, Z);
             _Indices = cubo1.GetIndices();
             _Vertices = cubo1.GetVertices();
-            JuntarInd(cubo1.GetIndices(), cubo2.GetIndices());
-            JuntarVer(cubo1.GetVertices(), cubo2.GetVertices());
+
+            Ccubo cubo2 = new(0.6f, 0.3f, 0.2f, X, -0.15f + Y, Z);
+            JuntarInd(cubo2.GetIndices());
+            JuntarVer(cubo2.GetVertices());
 
         }
-        private void JuntarVer(float[] ver1, float[] ver2)
+        //junta los vertices
+        private void JuntarVer(float[] ver2)
         {
-            int cant = ver1.Length;
-            if (ver1.Length < cant + cant)
+            int cant = Nvert();
+            int cant1 = ver2.Length;
+            if (cant < cant + cant1)
             {
-                Array.Resize(ref _Vertices, cant + cant);
+                Array.Resize(ref _Vertices, cant + cant1);
             }
 
-            for (int i = 0; i < cant; i++)
+            for (int i = 0; i < cant1; i++)
             {
-                _Vertices[cant + i] = ver2[i];
+                InserVer(cant + i, ver2[i]);
             }
 
         }
-        private void JuntarInd(uint[] ind1, uint[] ind2)
+        //junta los indices
+        private void JuntarInd(uint[] ind2)
         {
-            int cant = ind1.Length;
-            if (ind1.Length < cant + cant)
+            int cant = Nindi();
+            int cant1 = ind2.Length;
+            if (cant < cant + cant1)
             {
-                Array.Resize (ref _Indices, cant + cant);
+                Array.Resize(ref _Indices, cant + cant1);
             }
-            for (int i = 0;i < cant; i++)
+
+            for (int i = 0; i < cant1; i++)
             {
-                _Indices [cant + i] = ind2[i]+8;
+                InserInd(cant + i, ind2[i] + (ind2.Max() + 1));
             }
         }
+
+        //inserta un uint a una posicion de el arreglo de indices
+        private void InserInd(int pos, uint elem) { _Indices[pos] = elem; }
+        //inserta un float a una posicion de el arreglo de vertices
+        private void InserVer(int pos, float elem) { _Vertices[pos] = elem; }
+        //cantidad de los vertices
+        public int Cant_Vert() { return _Indices.Length / 3; }
+        //cantidad de los elementos del arreglo de los indices
+        public int Nindi() { return _Indices.Length; }
+        //cantidad de los elementos del arreglo de vertices
+        public int Nvert() { return _Vertices.Length; }
+
         public float[] GetVertices() { return _Vertices; }
         public uint[] GetIndices() { return _Indices; }
     }

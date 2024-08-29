@@ -9,7 +9,7 @@ namespace centro_relativo
 {
     public class Window : GameWindow
     {                                         //  X     Y    Z                              
-        private readonly CfiguraT figuraT = new (0.1f,0.8f,0.1f);
+        private readonly CfiguraT figuraT = new (0.1f,0.3f,0.1f);
 
         private int _elementBufferObject;
 
@@ -57,7 +57,7 @@ namespace centro_relativo
 
             var texCoordLocation = _shader.GetAttribLocation("aTexCoord");
             GL.EnableVertexAttribArray(texCoordLocation);
-            GL.VertexAttribPointer(texCoordLocation, 2, VertexAttribPointerType.Float, false, 3 * sizeof(float), 3 * sizeof(float));
+            GL.VertexAttribPointer(texCoordLocation, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 3 * sizeof(float));
 
             _view = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
 
@@ -82,6 +82,8 @@ namespace centro_relativo
             _shader.SetMatrix4("model", model);
             _shader.SetMatrix4("view", _view);
             _shader.SetMatrix4("projection", _projection);
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+         
 
             GL.DrawElements(PrimitiveType.Triangles, figuraT.GetIndices().Length, DrawElementsType.UnsignedInt, 0);
 
