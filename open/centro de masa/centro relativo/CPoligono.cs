@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace centro_relativo
 {
-    internal class Poligono
+    internal class CPoligono
     {
-       
+        private float[] _Vertices;
+        private uint[] _Indices;
+        
+        public  CPoligono() { } 
+
     }
 }
