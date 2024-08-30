@@ -51,8 +51,8 @@ namespace centro_relativo
         }
 
 
-        public float[] GetVertices => _Vertices;
-        public uint[] GetIndices => _Indices;
-        public float[] GetCentroide => _Centroide;
+        public float[] GetVertices(){ return _Vertices; }
+        public uint[] GetIndices() { return _Indices; }
+        public float[] GetCentroide() { return _Centroide; }
     }
 }
