@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("centro_relativo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+735e20a805d133f1d6338aa9976092cb062a8997")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a50e32d9c6db4e403fe4143067858a7b24f7b461")]
 [assembly: System.Reflection.AssemblyProductAttribute("centro_relativo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("centro_relativo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
