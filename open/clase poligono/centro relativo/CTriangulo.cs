@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace centro_relativo
 {
-    internal class CTriangulo 
+    internal class CTriangulo :IPoligono
     {
         private float[] _Vertices;
         private uint[] _Indices;

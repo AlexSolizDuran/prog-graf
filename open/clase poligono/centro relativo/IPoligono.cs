@@ -8,10 +8,10 @@ namespace centro_relativo
 {
 	public interface IPoligono
 	{
-		
-		float[] GetVertices { get; }
-		uint[] GetIndices { get; }
-		float[] GetCentroide { get; }
+
+		float[] GetVertices();
+		uint[] GetIndices();
+		float[] GetCentroide();
 	}
 }
 
