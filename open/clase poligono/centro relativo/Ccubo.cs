@@ -9,29 +9,29 @@ namespace centro_relativo
 {
     internal class Ccubo:IPoligono
     {
-        private List<CCuadrado> _CcuadradoList;
+        private List<CTriangulo> _CcuadradoList = [];
         private float[] _Vertices;
         private uint[] _Indices;
-        private float[] _Centroide;
+        private float[] _Centroide =new float[3];
         
 
         public Ccubo(float X, float Y, float Z)
         {
-            _CcuadradoList = new List<CCuadrado>();
-            _CcuadradoList.Add(new CCuadrado(X, Y, 0.0f));
-            _CcuadradoList.Add(new CCuadrado(X, Y, -Z));
-            _CcuadradoList.Add(new CCuadrado(0, Y, -Z));
-            //_CcuadradoList.Add(new CCuadrado(X, Y, Z, 'X'));
-            //_CcuadradoList.Add(new CCuadrado(X, Y, Z, 'Y'));
-            //_CcuadradoList.Add(new CCuadrado(X, Y, 0.0f, 'Y'));
+            
+            _ListTriangulo.Add(new CTriangulo(0.0f, 0.0f, Z,
+                                              Y, 0.0f, Z,
+                                              Y, X, Z));
+            _ListTriangulo.Add(new CTriangulo(0.0f, 0.0f, Z,
+                                              0.0f, X, Z,
+                                              Y, X, Z));
             Juntar_Vertices();
             Juntar_Indices();
             Juntar_Centroide();
 
         }
         private void Juntar_Centroide()
-        {
-            _Centroide = new float[3];
+        {   
+            
             for (int i = 0; i < 3; i++)
             {
                 float suma = 0.0f;
@@ -55,8 +55,9 @@ namespace centro_relativo
                 {
                     inditemp.Add(indices[i] + suma);
                 }
-                suma = (uint)inditemp.ToArray().Max()+2;
-                    //(uint)cuadrado.GetIndices().Length;
+                suma = (uint)inditemp.ToArray().Length;
+
+                    
             }
             _Indices = inditemp.ToArray();
         }

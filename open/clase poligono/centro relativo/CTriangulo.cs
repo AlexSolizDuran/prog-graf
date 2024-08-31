@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace centro_relativo
 {
-    internal class CTriangulo :IPoligono
+    internal class CTriangulo :IPoligono 
     {
         private float[] _Vertices;
         private uint[] _Indices;
@@ -36,8 +37,15 @@ namespace centro_relativo
                 (Z1 + Z2 + Z3) / 3
             };
         }
+        public void Plano_X()
+        {
+            float X1 = _Vertices[1]; float X2 = _Vertices[4]; float X3 = _Vertices[7];
+            _Vertices[2] = _Vertices[0]; _Vertices[5] = _Vertices[3]; _Vertices[8] = _Vertices[6];
+            _Vertices[0] = X1; _Vertices[3] = X2; _Vertices[6] = X3; 
+        }
         public void Mov_Centroide(float X,float Y, float Z)
         {
+            
             _Centroide[0]= X; _Centroide[1]= Y; _Centroide[2]= Z;
             Mov_Vertices(X,Y,Z);
         }
@@ -50,7 +58,7 @@ namespace centro_relativo
             _Vertices[2] += Z; _Vertices[5] += Z; _Vertices[8] += Z;
         }
 
-
+            
         public float[] GetVertices(){ return _Vertices; }
         public uint[] GetIndices() { return _Indices; }
         public float[] GetCentroide() { return _Centroide; }

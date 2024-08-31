@@ -5,76 +5,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LearnOpenTK.Common;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.GraphicsLibraryFramework;
+using OpenTK.Windowing.Desktop;
 
 namespace centro_relativo
 {
     internal class CCuadrado : IPoligono
     {
-        private readonly CTriangulo Triangulo1;
-        private readonly CTriangulo Triangulo2; 
+        private List<CTriangulo> _ListTriangulo = new List<CTriangulo>();
         private float[] _Vertices;
         private uint[] _Indices;
-        private float[] _Centroide;
-        public CCuadrado(float X, float Y, float Z) 
+        private float[] _Centroide = new float[3];
+        public CCuadrado(float X, float Y, float Z)
         {
-            
-                Triangulo1 = new CTriangulo(0.0f, 0.0f, Z,
-                                            Y, 0.0F, Z,
-                                            Y, X, Z);
-                Triangulo2 = new CTriangulo(0.0f, 0.0f, Z,
-                                            0.0f, X, Z,
-                                            Y, X, Z);
-            
-            
+
+            _ListTriangulo.Add(new CTriangulo(0.0f, 0.0f, Z,
+                                              Y, 0.0f, Z,
+                                              Y, X, Z));
+            _ListTriangulo.Add(new CTriangulo(0.0f, 0.0f, Z,
+                                              0.0f, X, Z,
+                                              Y, X, Z));
+
+
+
             Juntar_Vertices();
             Juntar_Indices();
             Juntar_Centroide();
 
         }
-        private void Juntar_Centroide()
+        public void Plano_X()
         {
-            float[] cen1 = Triangulo1.GetCentroide();
-
-            float[] cen2 = Triangulo2.GetCentroide();
-            _Centroide = new float[3]
+            foreach (CTriangulo triangulo in _ListTriangulo)
             {
-                (cen1[0]+cen2[0])/2,(cen1[1]+cen2[1])/2,(cen1[2]+cen2[2])/2
-            };
+                triangulo.Plano_X();
+            }
+        }
+        public void dibujar()
+        {
+
+        }
+        private void Juntar_Centroide()
+        { float suma;
+            for (int i = 0; i < 3; i++)
+            { 
+                suma = 0.0f;
+                foreach (CTriangulo triangulo in _ListTriangulo)
+                {
+                    suma += triangulo.GetCentroide()[i];
+                }
+                _Centroide[i] = suma / _ListTriangulo.Count;
+            }
+            
+         
         }
         public void Mov_Centroide(float X,float Y,float Z)
         {
-            Triangulo1.Mov_Centroide(X, Y, Z);
-            Triangulo2.Mov_Centroide(X, Y, Z);
+            foreach (CTriangulo triangulo in _ListTriangulo)
+            {
+                triangulo.Mov_Centroide(X,Y,Z);
+            }
         }
 
         private void Juntar_Vertices()
         {
-            float[] ver1 = Triangulo1.GetVertices();
-            
-            float[] ver2 = Triangulo2.GetVertices();
-
-            int cant = ver1.Length + ver2.Length;
-            
-            _Vertices = new float[cant];
-            Array.Copy(ver1, 0, _Vertices, 0, ver1.Length);
-            Array.Copy(ver2, 0, _Vertices, ver1.Length, ver2.Length);
-            
+            List<float> vertemp = new List<float>();
+            foreach (CTriangulo triangulo in _ListTriangulo)
+            {
+                vertemp.AddRange(triangulo.GetVertices());
+            }
+            _Vertices = vertemp.ToArray();
         }
         private void Juntar_Indices()
         {
-            uint[] ind1 = Triangulo1.GetIndices();
-
-            uint[] ind2 = Triangulo2.GetIndices();
-
-            int cant = ind1.Length + ind2.Length;
-
-            _Indices = new uint[cant];
-            Array.Copy(ind1, 0,_Indices,0,ind1.Length);
-            for (int i = 0; i < ind2.Length; i++)
+            List<uint> inditemp = new List<uint>();
+            uint suma=0;
+            foreach (CTriangulo triangulo in _ListTriangulo)
             {
-                ind2 [i] += ind1.Max();
+                uint[] indices = triangulo.GetIndices();
+                for (int i = 0; i < indices.Length; i++)
+                {
+                    inditemp.Add(indices[i] + suma);
+                }
+                suma = (uint)inditemp.ToArray().Length;
             }
-            Array.Copy(ind2,0,_Indices,ind1.Length,ind2.Length);
+            _Indices = inditemp.ToArray();
         }
         public float[] GetCentroide()
         {

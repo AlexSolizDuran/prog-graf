@@ -9,11 +9,11 @@ namespace centro_relativo
 {
     public class Window : GameWindow
     {                                         //  X     Y    Z                              
-        private readonly CfiguraT figuraT = new (0.1f,0.3f,0.1f);
+        private readonly CfiguraT figuraT = new(0.1f, 0.3f, 0.1f);
         //private readonly CCuadrado figuraT = new CCuadrado(0.5f, 0.3f, -0.5f, 'Y');
         //private readonly CTriangulo figuraT = new CTriangulo(0.0f, 0.0f, 0.0f,
         //                                                     0.5f, 0.0F, 0.0f,
-         //                                                    0.5f, 0.3f, 0.0f);
+        //                                                    0.5f, 0.3f, 0.0f);
         private int _elementBufferObject;
 
         private int _vertexBufferObject;
@@ -34,7 +34,7 @@ namespace centro_relativo
         protected override void OnLoad()
         {
             base.OnLoad();
-            
+
 
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
@@ -86,8 +86,8 @@ namespace centro_relativo
             _shader.SetMatrix4("view", _view);
             _shader.SetMatrix4("projection", _projection);
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-         
 
+            
             GL.DrawElements(PrimitiveType.Triangles, figuraT.GetIndices().Length, DrawElementsType.UnsignedInt, 0);
 
             SwapBuffers();
