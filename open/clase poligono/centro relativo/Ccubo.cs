@@ -9,18 +9,71 @@ namespace centro_relativo
 {
     internal class Ccubo:IPoligono
     {
-        private readonly float[] _vertices;
-        private uint[] _indices;
+        private List<CCuadrado> _CcuadradoList;
+        private float[] _Vertices;
+        private uint[] _Indices;
         private float[] _Centroide;
-       
-        public Ccubo(float X, float Y , float Z)
-        {   
-                        
+        
+
+        public Ccubo(float X, float Y, float Z)
+        {
+            _CcuadradoList = new List<CCuadrado>();
+            _CcuadradoList.Add(new CCuadrado(X, Y, 0.0f));
+            _CcuadradoList.Add(new CCuadrado(X, Y, -Z));
+            _CcuadradoList.Add(new CCuadrado(0, Y, -Z));
+            //_CcuadradoList.Add(new CCuadrado(X, Y, Z, 'X'));
+            //_CcuadradoList.Add(new CCuadrado(X, Y, Z, 'Y'));
+            //_CcuadradoList.Add(new CCuadrado(X, Y, 0.0f, 'Y'));
+            Juntar_Vertices();
+            Juntar_Indices();
+            Juntar_Centroide();
+
+        }
+        private void Juntar_Centroide()
+        {
+            _Centroide = new float[3];
+            for (int i = 0; i < 3; i++)
+            {
+                float suma = 0.0f;
+                foreach (CCuadrado cuadrado in _CcuadradoList)
+                {
+                    suma += cuadrado.GetCentroide()[i];
+                }
+                _Centroide[i] = suma / _CcuadradoList.Count;
+            }
+            
+        }
+        private void Juntar_Indices()
+        {
+            //pasa los indices a un solo arreglo
+            List<uint> inditemp = new List<uint>();
+            uint suma = 0;
+            foreach (CCuadrado cuadrado in _CcuadradoList)
+            {
+                uint[] indices = cuadrado.GetIndices();
+                for (int i = 0; i < indices.Length; i++)
+                {
+                    inditemp.Add(indices[i] + suma);
+                }
+                suma = (uint)inditemp.ToArray().Max()+2;
+                    //(uint)cuadrado.GetIndices().Length;
+            }
+            _Indices = inditemp.ToArray();
+        }
+        private void Juntar_Vertices()
+        {
+            //pasa los vertices a un solo arreglo
+            List<float> listtemp = new List<float>();
+            foreach (CCuadrado cuadrado in _CcuadradoList)
+            {
+                listtemp.AddRange(cuadrado.GetVertices());
+            }
+            _Vertices = listtemp.ToArray();
         }
 
         
-        public uint[] GetIndices() { return _indices; }
-        public float[] GetVertices(){ return _vertices; }
+        public uint[] GetIndices() { return _Indices; }
+        public float[] GetVertices(){ return _Vertices; }
         public float[] GetCentroide() { return _Centroide; }
         
         

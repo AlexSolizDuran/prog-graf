@@ -13,12 +13,12 @@ namespace centro_relativo
         private uint[] _Indices;
 
         public CfiguraT(float X, float Y, float Z)
-        {                    //alto,largo,prof   X    Y     Z 
-            //Ccubo cubo1 = new(0.3f, 0.7f, 0.2f, X, 0.3f + Y, Z);
-            //_Indices = cubo1.GetIndices();
-            //_Vertices = cubo1.GetVertices();
+        {                    //alto,largo,prof   
+            Ccubo cubo1 = new(0.3f, 0.7f, 0.2f);
+            _Indices = cubo1.GetIndices();
+            _Vertices = cubo1.GetVertices();
 
-            //Ccubo cubo2 = new(0.6f, 0.3f, 0.2f, X, -0.15f + Y, Z);
+            //Ccubo cubo2 = new(0.6f, 0.3f, 0.2f );
             //JuntarInd(cubo2.GetIndices());
             //JuntarVer(cubo2.GetVertices());
 
