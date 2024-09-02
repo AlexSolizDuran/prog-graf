@@ -29,6 +29,7 @@ namespace centro_relativo
         public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
         {
+            figuraT.Mover_Centroide(0.5f,0.5f,0.0f);
         }
 
         protected override void OnLoad()

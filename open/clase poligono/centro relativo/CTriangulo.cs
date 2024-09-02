@@ -37,28 +37,24 @@ namespace centro_relativo
                 (Z1 + Z2 + Z3) / 3
             };
         }
-        public void Plano_X()
-        {
-            float X1 = _Vertices[1]; float X2 = _Vertices[4]; float X3 = _Vertices[7];
-            _Vertices[2] = _Vertices[0]; _Vertices[5] = _Vertices[3]; _Vertices[8] = _Vertices[6];
-            _Vertices[0] = X1; _Vertices[3] = X2; _Vertices[6] = X3; 
-        }
-        public void Mov_Centroide(float X,float Y, float Z)
-        {
-            
-            _Centroide[0]= X; _Centroide[1]= Y; _Centroide[2]= Z;
-            Mov_Vertices(X,Y,Z);
-        }
 
-        private void Mov_Vertices(float X, float Y, float Z)
+        public void Mov_Centroide(float X, float Y, float Z)
         {
 
-            _Vertices[0] += X; _Vertices[3] += X; _Vertices[6] += X;
-            _Vertices[1] += Y; _Vertices[4] += Y; _Vertices[7] += Y;
-            _Vertices[2] += Z; _Vertices[5] += Z; _Vertices[8] += Z;
+            _Centroide[0] = X - _Centroide[0] ; _Centroide[1] = Y - _Centroide[1] ; _Centroide[2] = Z - _Centroide[2];
+            Mov_Vertices();
         }
 
-            
+        private void Mov_Vertices()
+        {
+
+            _Vertices[0] += _Centroide[0]; _Vertices[3] += _Centroide[0]; _Vertices[6] += _Centroide[0];
+            _Vertices[1] += _Centroide[1]; _Vertices[4] += _Centroide[1]; _Vertices[7] += _Centroide[1];
+            _Vertices[2] += _Centroide[2]; _Vertices[5] += _Centroide[2]; _Vertices[8] += _Centroide[2];
+        }
+
+        public void SetVertices(int pos, float valor) { _Vertices[pos] = valor; }
+        public float Posvertices(int pos) { return _Vertices[pos];}
         public float[] GetVertices(){ return _Vertices; }
         public uint[] GetIndices() { return _Indices; }
         public float[] GetCentroide() { return _Centroide; }
