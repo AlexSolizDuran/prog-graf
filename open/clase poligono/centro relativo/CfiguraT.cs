@@ -14,7 +14,7 @@ namespace centro_relativo
         private uint[] _Indices;
         private float[] _Centroide = new float[3];
 
-        public CfiguraT(float X, float Y, float Z)  
+        public CfiguraT()  
         {
             Objeto.Add("Cubo 1", new CObjeto(0.3f, 0.7f, 0.2f));
             Objeto.Add("Cubo 2", new CObjeto(0.6f, 0.3f, 0.2f));
