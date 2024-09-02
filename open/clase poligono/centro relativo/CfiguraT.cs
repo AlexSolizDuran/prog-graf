@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenTK.Mathematics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,9 +11,9 @@ namespace centro_relativo
     internal class CfiguraT
     {  
         private Dictionary<string, CObjeto> Objeto = new Dictionary<string, CObjeto>();
-        private float[] _Vertices ;
-        private uint[] _Indices;
-        private float[] _Centroide = new float[3];
+        private List<Vector3> _Vertices = new List<Vector3>();
+        private List<uint> _Indices = new List<uint>();
+        private Vector3 _Centroide;
 
         public CfiguraT()  
         {
@@ -21,72 +22,57 @@ namespace centro_relativo
 
             Objeto["Cubo 1"].Mov_Centroide(0.0f, 0.45f, 0.0f);
             Objeto["Cubo 2"].Mov_Centroide(0.0f, 0.0f, 0.0f);
-            JuntarVer();
-            JuntarInd();
+            Juntar_Vertices();
+            Juntar_Indices();
             Juntar_Centroide();
 
         }
         public void Mover_Centroide(float X, float Y,float Z)
         {
-            
             foreach(KeyValuePair<string, CObjeto> kvp in Objeto)
             {
-                float X2 = X + kvp.Value.PosCentroide(0);
-                float Y2 = Y + kvp.Value.PosCentroide(1);
-                float Z2 = Z + kvp.Value.PosCentroide(2);
+                float X2 = X + kvp.Value.GetCentroide().X;
+                float Y2 = Y + kvp.Value.GetCentroide().Y;
+                float Z2 = Z + kvp.Value.GetCentroide().Z;
                 kvp.Value.Mov_Centroide(X2,Y2,Z2);
             }
-            
-            JuntarVer();
-            Juntar_Centroide();
+            //Juntar_Vertices();
+            //Juntar_Centroide();
         }
         public void Juntar_Centroide()
         {
-            for (int i = 0; i < 3;i++)
-            {
-                float suma = 0;
-                foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
-                {
+            float X = 0;
+            float Y = 0;
+            float Z = 0;
 
-                    suma += kvp.Value.GetCentroide()[i];
-                }
-                _Centroide[i] = suma / Objeto.Count;
-            }  
-        }
-        //junta los vertices
-        private void JuntarVer()
-        {
-            List<float> listtemp = new List<float>();
-            foreach (KeyValuePair<string,CObjeto>kvp in Objeto)
-            {
-                listtemp.AddRange(kvp.Value.GetVertices());
-            }
-            _Vertices = listtemp.ToArray();
-
-        }
-        //junta los indices
-        private void JuntarInd()
-        {
-            List<uint> listtemp = new List<uint>();
-            uint suma = 0;
             foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
             {
-                uint[] indices = kvp.Value.GetIndices();
-                for (int i = 0; i < indices.Length; i++)
-                {
-                    listtemp.Add(indices[i] + suma);
-                }
-                suma = (uint)listtemp.ToArray().Length;
-
-
+                X += kvp.Value.GetCentroide().X;
+                Y += kvp.Value.GetCentroide().Y;
+                Z += kvp.Value.GetCentroide().Z;
             }
-            
-            _Indices = listtemp.ToArray();
+            int n = Objeto.Count;
+            _Centroide.X = X / n;
+            _Centroide.Y = Y / n;
+            _Centroide.Z = Z / n;
+
         }
-
         
-
-        public float[] GetVertices() { return _Vertices; }
-        public uint[] GetIndices() { return _Indices; }
+        private void Juntar_Vertices()
+        {
+            foreach (KeyValuePair<string,CObjeto>kvp in Objeto)
+            {
+                _Vertices.AddRange(kvp.Value.GetVertices());
+            }
+        }
+        private void Juntar_Indices()
+        {
+            foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
+            {
+                _Indices.AddRange(kvp.Value.GetIndices());
+            }
+        }
+        public List<Vector3> GetVertices() { return _Vertices; }
+        public List<uint> GetIndices() { return _Indices; }
     }
 }

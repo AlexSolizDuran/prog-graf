@@ -9,7 +9,7 @@ namespace centro_relativo
 {
     public class Window : GameWindow
     {                                                                     
-        private readonly CfiguraT figuraT = new();
+        private readonly Escenario1 figuraT = new();
         
         private int _elementBufferObject;
 
@@ -26,7 +26,7 @@ namespace centro_relativo
         public Window(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings)
             : base(gameWindowSettings, nativeWindowSettings)
         {
-            figuraT.Mover_Centroide(0.5f,0.5f,0.0f);
+            //figuraT.Mover_Centroide(0.5f,0.5f,0.0f);
         }
 
         protected override void OnLoad()
