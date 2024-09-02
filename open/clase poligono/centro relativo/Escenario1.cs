@@ -13,8 +13,10 @@ namespace centro_relativo
         private uint[] _Indices;
         public Escenario1()
         {
+            figura1.Mover_Centroide(-0.2f, -0.5f, 0.0f);
             VecToVert();
             _Indices = figura1.GetIndices().ToArray();
+            
 
         }
         private void VecToVert()

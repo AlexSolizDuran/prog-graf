@@ -36,8 +36,8 @@ namespace centro_relativo
                 float Z2 = Z + kvp.Value.GetCentroide().Z;
                 kvp.Value.Mov_Centroide(X2,Y2,Z2);
             }
-            //Juntar_Vertices();
-            //Juntar_Centroide();
+            Juntar_Vertices();
+            Juntar_Centroide();
         }
         public void Juntar_Centroide()
         {
@@ -60,16 +60,24 @@ namespace centro_relativo
         
         private void Juntar_Vertices()
         {
+            List<Vector3> listemp = new List<Vector3>();
             foreach (KeyValuePair<string,CObjeto>kvp in Objeto)
             {
-                _Vertices.AddRange(kvp.Value.GetVertices());
+                listemp.AddRange(kvp.Value.GetVertices());
             }
+            _Vertices = listemp;
         }
         private void Juntar_Indices()
-        {
+        {   uint longitud = _Indices.Any() ? _Indices.Max() : 0;
             foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
             {
-                _Indices.AddRange(kvp.Value.GetIndices());
+                List<uint> indices = kvp.Value.GetIndices();
+                foreach (uint indice in indices)
+                {
+                    _Indices.Add(indice + longitud );
+                }
+                longitud = _Indices.Max() +1;
+                
             }
         }
         public List<Vector3> GetVertices() { return _Vertices; }

@@ -100,20 +100,18 @@ namespace centro_relativo
             List<Vector3> listemp = new List<Vector3>();
             foreach (Vector3 vector in _Vertices)
             {
-                for (int i = 0; i < _Vertices.Count; i++)
+                pos = listemp.IndexOf(vector);
+                if (pos == -1)
                 {
-                    pos = listemp.IndexOf(vector);
-                    if (pos == -1)
-                    {
-                        listemp.Add(vector);
-                        _Indices.Add(ind);
-                        ind++;
-                    }
-                    else
-                    {
-                        _Indices.Add((uint)pos);
-                    }
+                    listemp.Add(vector);
+                    _Indices.Add(ind);
+                    ind++;
                 }
+                else
+                {
+                    _Indices.Add((uint)pos);
+                }
+                
             }
             _Vertices = listemp;
         }

@@ -86,7 +86,7 @@ namespace centro_relativo
             GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
            
             
-            GL.DrawElements(PrimitiveType.LineLoop, figuraT.GetIndices().Length, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.Triangles, figuraT.GetIndices().Length, DrawElementsType.UnsignedInt, 0);
 
             SwapBuffers();
         }
