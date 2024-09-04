@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace centro_relativo
 {
-    internal class CfiguraT
+    internal class CfiguraT : IDibujable
     {  
         private Dictionary<string, CObjeto> Objeto = new Dictionary<string, CObjeto>();
         private List<Vector3> _Vertices = new List<Vector3>();
@@ -27,7 +27,7 @@ namespace centro_relativo
             Juntar_Centroide();
 
         }
-        public void Cargar_buffer()
+        public void Cargar_Buffer()
         {
             foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
             {
@@ -41,7 +41,7 @@ namespace centro_relativo
                 kvp.Value.Dibujar();
             }
         }
-        public void Mover_Centroide(float X, float Y,float Z)
+        public void Mov_Centroide(float X, float Y,float Z)
         {
             foreach(KeyValuePair<string, CObjeto> kvp in Objeto)
             {

@@ -14,13 +14,12 @@ using LearnOpenTK.Common;
 
 namespace centro_relativo
 {
-    internal class CObjeto
+    internal class CObjeto : IDibujable
     {
         private List<CTriangulo> _TrianguloList = [];
         private int _VAO;
         private int _VBO;
         private int _EBO;
-        private Shader _shader;
         private float[] _Vertice;
         private uint[] _Indice;
         private List<Vector3> _Vertices = new List<Vector3>();
@@ -115,7 +114,7 @@ namespace centro_relativo
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, _EBO);
             GL.BufferData(BufferTarget.ElementArrayBuffer, _Indice.Length * sizeof(uint), _Indice, BufferUsageHint.StaticDraw);
 
-            // Asumiendo que tus vértices tienen 3 posiciones y 2 coordenadas de textura
+            
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
 
@@ -212,7 +211,7 @@ namespace centro_relativo
                 _Vertices.AddRange(vector);
             };
         }
-        
+       
         public List<uint> GetIndices() { return _Indices; }
         public List<Vector3> GetVertices(){ return _Vertices; }
         public Vector3 GetCentroide() { return _Centroide; }
