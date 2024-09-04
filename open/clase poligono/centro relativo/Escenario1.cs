@@ -16,8 +16,16 @@ namespace centro_relativo
             figura1.Mover_Centroide(-0.2f, -0.5f, 0.0f);
             VecToVert();
             _Indices = figura1.GetIndices().ToArray();
-            
 
+
+        }
+        public void Cargar_Buffer()
+        {
+            figura1.Cargar_buffer();
+        }
+        public void Dibujar()
+        {
+            figura1.Dibujar();
         }
         private void VecToVert()
         {

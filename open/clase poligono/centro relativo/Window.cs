@@ -9,14 +9,8 @@ namespace centro_relativo
 {
     public class Window : GameWindow
     {                                                                     
-        private readonly Escenario1 figuraT = new();
+        private readonly Escenario1 EscenarioA = new();
         
-        private int _elementBufferObject;
-
-        private int _vertexBufferObject;
-
-        private int _vertexArrayObject;
-
         private Shader _shader;
 
         private double _time;
@@ -32,25 +26,17 @@ namespace centro_relativo
         protected override void OnLoad()
         {
             base.OnLoad();
-
+            
 
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
             GL.Enable(EnableCap.DepthTest);
-
-            _vertexArrayObject = GL.GenVertexArray();
-            GL.BindVertexArray(_vertexArrayObject);
-
-            _vertexBufferObject = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, figuraT.GetVertices().Length * sizeof(float), figuraT.GetVertices(), BufferUsageHint.StaticDraw);
-
-            _elementBufferObject = GL.GenBuffer();
-            GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, figuraT.GetIndices().Length * sizeof(uint), figuraT.GetIndices(), BufferUsageHint.StaticDraw);
+            
 
             _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
             _shader.Use();
+
+            EscenarioA.Cargar_Buffer();
 
             var vertexLocation = _shader.GetAttribLocation("aPosition");
             GL.EnableVertexAttribArray(vertexLocation);
@@ -74,7 +60,7 @@ namespace centro_relativo
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            GL.BindVertexArray(_vertexArrayObject);
+            
 
             _shader.Use();
 
@@ -83,10 +69,8 @@ namespace centro_relativo
             _shader.SetMatrix4("model", model);
             _shader.SetMatrix4("view", _view);
             _shader.SetMatrix4("projection", _projection);
-            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-           
-            
-            GL.DrawElements(PrimitiveType.Triangles, figuraT.GetIndices().Length, DrawElementsType.UnsignedInt, 0);
+
+            EscenarioA.Dibujar();
 
             SwapBuffers();
         }

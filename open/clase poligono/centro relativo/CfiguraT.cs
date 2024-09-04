@@ -27,6 +27,20 @@ namespace centro_relativo
             Juntar_Centroide();
 
         }
+        public void Cargar_buffer()
+        {
+            foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
+            {
+                kvp.Value.Cargar_Buffer();
+            }
+        }
+        public void Dibujar()
+        {
+            foreach (KeyValuePair<string, CObjeto> kvp in Objeto)
+            {
+                kvp.Value.Dibujar();
+            }
+        }
         public void Mover_Centroide(float X, float Y,float Z)
         {
             foreach(KeyValuePair<string, CObjeto> kvp in Objeto)

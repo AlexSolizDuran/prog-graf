@@ -6,15 +6,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using OpenTK.Mathematics;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.GraphicsLibraryFramework;
+using OpenTK.Windowing.Desktop;
+using LearnOpenTK.Common;
 
 namespace centro_relativo
 {
     internal class CObjeto
     {
         private List<CTriangulo> _TrianguloList = [];
+        private int _VAO;
         private int _VBO;
-        private int _VBA;
-        private int _VCA;
+        private int _EBO;
+        private Shader _shader;
+        private float[] _Vertice;
+        private uint[] _Indice;
         private List<Vector3> _Vertices = new List<Vector3>();
         private List<uint> _Indices = new List<uint>();
         private Vector3 _Centroide;
@@ -91,7 +99,54 @@ namespace centro_relativo
             Juntar_Vertices();
             OptimizarVer();
             Definir_Centroide();
+            VecToVer();
 
+        }
+        public void Cargar_Buffer()
+        {
+            _VAO = GL.GenVertexArray();
+            GL.BindVertexArray(_VAO);
+
+            _VBO = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ArrayBuffer, _VBO);
+            GL.BufferData(BufferTarget.ArrayBuffer, _Vertice.Length * sizeof(float), _Vertice, BufferUsageHint.StaticDraw);
+
+            _EBO = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, _EBO);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, _Indice.Length * sizeof(uint), _Indice, BufferUsageHint.StaticDraw);
+
+            // Asumiendo que tus vértices tienen 3 posiciones y 2 coordenadas de textura
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.EnableVertexAttribArray(0);
+
+            GL.VertexAttribPointer(1, 2, VertexAttribPointerType.Float, false, 3 * sizeof(float), 3 * sizeof(float));
+            GL.EnableVertexAttribArray(1);
+
+            GL.BindBuffer(BufferTarget.ArrayBuffer, 0);
+            GL.BindVertexArray(0);
+        }
+        public void Dibujar()
+        {
+            
+            GL.BindVertexArray(_VAO);
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+           
+            GL.BindBuffer(BufferTarget.ElementArrayBuffer, _EBO);
+            GL.DrawElements(PrimitiveType.Triangles, _Indice.Length, DrawElementsType.UnsignedInt, 0);
+            GL.BindVertexArray(0);
+
+        }
+        public void VecToVer()
+        {
+            int cant = _Vertices.Count;
+            _Vertice = new float[cant * 3];
+            for (int i = 0; i < cant; i++)
+            {
+                _Vertice[i * 3] = _Vertices[i].X;
+                _Vertice[i * 3 + 1] = _Vertices[i].Y;
+                _Vertice[i * 3 + 2] = _Vertices[i].Z;
+            }
+            
         }
         public void OptimizarVer()
         {
@@ -114,6 +169,7 @@ namespace centro_relativo
                 
             }
             _Vertices = listemp;
+            _Indice = _Indices.ToArray();
         }
         public void Mov_Centroide(float X, float Y, float Z)
         {
@@ -128,7 +184,7 @@ namespace centro_relativo
                 _Vertices[i] = vectorN;
             }
             Definir_Centroide();
-
+            VecToVer();
         }
         private void Definir_Centroide()
         {
