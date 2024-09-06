@@ -32,7 +32,7 @@ namespace centro_relativo
                 writer.WriteLine(); // Espacio entre secciones
 
                 // Escribir los datos de los índices (caras)
-                writer.WriteLine("# Caras");
+                writer.WriteLine("# Índices");
                 for (int i = 0; i < indice.Length; i += 3)
                 {
                     
@@ -50,7 +50,7 @@ namespace centro_relativo
             GL.Enable(EnableCap.DepthTest);
 
             EscenarioA.Cargar_Buffer(Size.X,(float)Size.Y);
-            string filePath = @"C:\Users\CASA\prog-graf\open\clase poligono\centro relativo\vertices+indices.txt"; 
+            string filePath = @"..\..\..\vertices y indices.txt"; 
             Crear_Archivo(filePath);
             
         }
