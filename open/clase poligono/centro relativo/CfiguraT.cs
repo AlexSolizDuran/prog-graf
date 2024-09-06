@@ -18,18 +18,19 @@ namespace centro_relativo
 
         public CfiguraT()
         {
-            //Objeto.Add("Cubo 1", new CCubo(0.3f, 0.7f, 0.2f));
-            //Objeto.Add("Cubo 2", new CCubo(0.6f, 0.3f, 0.2f));
-            //Objeto["Cubo 1"].Mov_Centroide(0.0f, 0.0f, 0.0f);
-            //Objeto["Cubo 2"].Mov_Centroide(0.0f, 0.5f, 0.0f);
+            Objeto.Add("Cubo 1", new CCubo(0.3f, 0.7f, 0.2f));
+            Objeto.Add("Cubo 2", new CCubo(0.6f, 0.3f, 0.2f));
+            Objeto["Cubo 1"].Mov_Centroide(0.0f, 0.0f, 0.0f);
+            Objeto["Cubo 2"].Mov_Centroide(0.0f, 0.5f, 0.0f);
             String ubicacion1 = @"..\..\..\cubo1.txt";
             String ubicacion2 = @"..\..\..\cubo2.txt";
-            (float[] vertice1, uint[] indice1) = Cargar(ubicacion1);
-            (float[] vertice2, uint[] indice2) = Cargar(ubicacion2);
-            Objeto.Add("Cubo 1", new CCubo(vertice1,indice1));
-            Objeto.Add("Cubo 2", new CCubo(vertice2,indice2));
+            // CARGA LOS ARCHIVOS
+            //(float[] vertice1, uint[] indice1) = Cargar(ubicacion1);
+            //(float[] vertice2, uint[] indice2) = Cargar(ubicacion2);
+            //Objeto.Add("Cubo 1", new CCubo(vertice1,indice1));
+            //Objeto.Add("Cubo 2", new CCubo(vertice2,indice2));
             
-
+            // GUARDA LOS ARCHIVOS
             Guardar(ubicacion1, Objeto["Cubo 1"].Getvertice(), Objeto["Cubo 1"].Getindice());
             Guardar(ubicacion2, Objeto["Cubo 2"].Getvertice(), Objeto["Cubo 2"].Getindice());
             
