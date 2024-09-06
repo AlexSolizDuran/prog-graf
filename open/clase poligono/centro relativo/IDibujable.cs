@@ -14,6 +14,8 @@ namespace centro_relativo
 		void Dibujar();
 		List<uint> GetIndices();
 		List<Vector3> GetVertices();
+		
+		Vector3 GetCentroide();
 
 	}
 }

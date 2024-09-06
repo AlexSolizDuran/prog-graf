@@ -29,8 +29,8 @@ namespace centro_relativo
             List < Vector3 >vector = new(_Vertices);
             return vector ; 
         }
-        public float PosverticesX(int pos) { return _Vertices[pos].X;}
-        public Vector3 GetVerticespos(int pos){ return _Vertices[pos]; }
+        
+        
 
     }
 }

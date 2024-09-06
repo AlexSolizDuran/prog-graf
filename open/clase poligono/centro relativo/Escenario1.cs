@@ -28,14 +28,15 @@ namespace centro_relativo
         public Escenario1()
         {
             _Dibujable.Add(new CfiguraT());
-            _Dibujable.Add(new CObjeto(0.5f, 0.5f, 0.5f));
-            _Dibujable[0].Mov_Centroide(-0.5f, 0.5f, 0.0f);
-            _Dibujable[1].Mov_Centroide(0.5f, 0.8f, 0.0f);
+            _Dibujable.Add(new CCubo(0.5f, 0.5f, 0.5f));
+            _Dibujable[0].Mov_Centroide(-0.5f, 0.2f, 0.0f);
+            _Dibujable[1].Mov_Centroide(0.5f, 0.2f, 0.0f);
             VecToVert();
             Juntar_Indices();
 
 
         }
+        
         private void Juntar_Indices()
         {
             List<uint> listemp = new List<uint>();

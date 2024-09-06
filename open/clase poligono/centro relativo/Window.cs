@@ -17,29 +17,7 @@ namespace centro_relativo
             : base(gameWindowSettings, nativeWindowSettings)
         {
         }
-        public void Crear_Archivo(String filePath)
-        {
-            float[] vertice = EscenarioA.GetVertices();
-            uint[] indice = EscenarioA.GetIndices();
-            using (StreamWriter writer = new StreamWriter(filePath))
-            {
-                writer.WriteLine("# Vértices");
-                for (int i = 0; i < vertice.Length; i += 3)
-                {
-                    writer.WriteLine($"v {vertice[i]} {vertice[i + 1]} {vertice[i + 2]}");
-                }
-
-                writer.WriteLine(); // Espacio entre secciones
-
-                // Escribir los datos de los índices (caras)
-                writer.WriteLine("# Índices");
-                for (int i = 0; i < indice.Length; i += 3)
-                {
-                    
-                    writer.WriteLine($"f {indice[i] } {indice[i + 1] } {indice[i + 2] }");
-                }
-            }
-        }
+        
 
         protected override void OnLoad()
         {
@@ -50,8 +28,8 @@ namespace centro_relativo
             GL.Enable(EnableCap.DepthTest);
 
             EscenarioA.Cargar_Buffer(Size.X,(float)Size.Y);
-            string filePath = @"..\..\..\vertices y indices.txt"; 
-            Crear_Archivo(filePath);
+            //string filePath = @"..\..\..\vertices y indices.txt"; 
+            //Crear_Archivo(filePath);
             
         }
 
@@ -60,8 +38,6 @@ namespace centro_relativo
             base.OnRenderFrame(e);
 
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-
-            
 
             EscenarioA.Dibujar(e);
 

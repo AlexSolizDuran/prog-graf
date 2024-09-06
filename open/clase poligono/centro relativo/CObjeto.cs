@@ -27,80 +27,23 @@ namespace centro_relativo
         private Vector3 _Centroide;
         
 
-        public CObjeto(float Y, float X, float Z)
+        public CObjeto(List<CTriangulo> Lista)
         {
-            // Cara frontal (plano Z constante)
-            _TrianguloList.Add(new CTriangulo(
-             0.0f, 0.0f, 0.0f,   
-             X, 0.0f, 0.0f,      
-             X, Y, 0.0f));
-
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, 0.0f,   
-                X, Y, 0.0f,         
-                0.0f, Y, 0.0f));
-
-            // Cara trasera (plano Z constante)
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, Z,     
-                X, 0.0f, Z,        
-                X, Y, Z));
-
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, Z,    
-                X, Y, Z,           
-                0.0f, Y, Z));
-
-            // Cara superior (plano Y constante)
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, Y, 0.0f,  
-                X, Y, 0.0f,     
-                X, Y, Z));
-
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, Y, 0.0f,   
-                X, Y, Z,        
-                0.0f, Y, Z));
-
-            // Cara inferior (plano Y constante)
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, 0.0f,   
-                X, 0.0f, 0.0f,     
-                X, 0.0f, Z));
-
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, 0.0f,   
-                X, 0.0f, Z,          
-                0.0f, 0.0f, Z));
-
-            // Cara derecha (plano X constante)
-            _TrianguloList.Add(new CTriangulo(
-                X, 0.0f, 0.0f,    
-                X, Y, 0.0f,       
-                X, Y, Z));
-
-            _TrianguloList.Add(new CTriangulo(
-                X, 0.0f, 0.0f,     
-                X, Y, Z,          
-                X, 0.0f, Z));
-
-            // Cara izquierda (plano X constante)
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, 0.0f,    
-                0.0f, Y, 0.0f,      
-                0.0f, Y, Z));
-
-            _TrianguloList.Add(new CTriangulo(
-                0.0f, 0.0f, 0.0f,   
-                0.0f, Y, Z,        
-                0.0f, 0.0f, Z));   
+            _TrianguloList = Lista;
             
             Juntar_Vertices();
             OptimizarVer();
-            Definir_Centroide();
             VecToVer();
-
+            Definir_Centroide();
         }
+        public CObjeto(float[] vertice, uint[] indice)
+        {
+            _Vertice = vertice;
+            _Indice = indice;
+            _Indices = new List<uint>(_Indice);
+            Definir_Centroide();
+        }
+
         public void Cargar_Buffer()
         {
             _VAO = GL.GenVertexArray();
@@ -172,31 +115,32 @@ namespace centro_relativo
         }
         public void Mov_Centroide(float X, float Y, float Z)
         {
-            float X1 = X - _Centroide[0];
-            float Y1 = Y - _Centroide[1];
-            float Z1 = Z - _Centroide[2];
+            float X1 = X - _Centroide.X;
+            float Y1 = Y - _Centroide.Y;
+            float Z1 = Z - _Centroide.Z;
 
-            for (int i = 0; i < _Vertices.Count; i++) 
+            for (int i = 0; i < _Vertice.Length; i += 3)
             {
-                Vector3 vector = _Vertices[i];
-                Vector3 vectorN = new (vector.X +X1,vector.Y+Y1,vector.Z+ Z1);
-                _Vertices[i] = vectorN;
+                _Vertice[i] = _Vertice[i] + X1;
+                _Vertice[i + 1] = _Vertice[i+1] + Y1;
+                _Vertice[i + 2] = _Vertice[i+2] + Z1;
             }
             Definir_Centroide();
-            VecToVer();
+            
         }
         private void Definir_Centroide()
         {
             float sumax = 0;
             float sumay = 0;
             float sumaz = 0;
-            foreach (Vector3 triangulo in _Vertices)
+            for (int i = 0;i < _Vertice.Length;i+=3)
             {
-                sumax += triangulo.X;
-                sumay += triangulo.Y;
-                sumaz += triangulo.Z;
+                sumax += _Vertice[i];
+                sumay += _Vertice[i+1];
+                sumaz += _Vertice[i+2];
             }
-            int c = _Vertices.Count;
+
+            int c = _Vertice.Length/3;
             _Centroide.X = sumax/c;
             _Centroide.Y = sumay/c;
             _Centroide.Z = sumaz/c;
@@ -215,6 +159,8 @@ namespace centro_relativo
         public List<uint> GetIndices() { return _Indices; }
         public List<Vector3> GetVertices(){ return _Vertices; }
         public Vector3 GetCentroide() { return _Centroide; }
+        public float[] Getvertice() { return _Vertice; }
+        public uint[] Getindice() { return _Indice; }
         
         
 
