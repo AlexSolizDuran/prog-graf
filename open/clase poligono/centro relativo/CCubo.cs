@@ -82,7 +82,10 @@ namespace centro_relativo
 
             cubo = new CObjeto(_TrianguloList);
         }
-
+        public CCubo(float[] vertice, uint[] indice)
+        {
+            cubo = new CObjeto(vertice, indice);
+        }
         public void Mov_Centroide(float X, float Y, float Z)
         {
             cubo.Mov_Centroide(X,Y,Z);
@@ -111,6 +114,16 @@ namespace centro_relativo
         public Vector3 GetCentroide()
         {
             return cubo.GetCentroide();
+        }
+
+        public float[] Getvertice()
+        {
+            return cubo.Getvertice();
+        }
+
+        public uint[] Getindice()
+        {
+            return cubo.Getindice();
         }
     }
 }
