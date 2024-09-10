@@ -38,5 +38,27 @@ namespace Graficar
             }
             return result.ToArray();
         }
+        public static Vector centro (List<Vector> list)
+        {
+            List<float> listX =new List<float>();
+            List<float> listY =new List<float>();
+            List<float> listZ =new List<float>();
+            foreach(Vector v in list)
+            {
+                listX.Add(v.X);
+                listY.Add(v.Y);
+                listZ.Add(v.Z);
+            }
+            float[] arrayX = listX.ToArray();
+            float[] arrayY = listY.ToArray();
+            float[] arrayZ = listZ.ToArray();
+            float X= (arrayX.Min() + arrayX.Max())/2;
+            float Y= (arrayY.Min() + arrayY.Max())/2;
+            float Z= (arrayZ.Min() + arrayZ.Max())/2;
+
+            Vector vector = new Vector(X,Y,Z);
+
+            return vector;
+        }
     }
 }

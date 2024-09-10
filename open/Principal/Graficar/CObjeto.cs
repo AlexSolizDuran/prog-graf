@@ -13,12 +13,14 @@ namespace Graficar
     {
         [JsonProperty]
         public List<CPartes> PartesList {  get; private set; }
-        public Vector Centro {  get; set; }
+        [JsonProperty]
+        public Vector Centro {  get; private set; }
        
-
+        public CObjeto() { }
         public CObjeto(List<CPartes> list)
         {
             PartesList = list;
+            Centro = Metodo.centro(listcen());
         }
         public void SetPartes(CPartes elem)
         {
@@ -37,6 +39,31 @@ namespace Graficar
             {
                 partes.Dibujar();
             }
+        }
+        public void Mov_Centro(Vector newcentro)
+        {
+            
+            foreach (CPartes V in PartesList)
+            {
+                float X = newcentro.X + V.Centro.X;
+                float Y = newcentro.Y + V.Centro.Y;
+                float Z = newcentro.Z + V.Centro.Z;
+                Vector centro = new Vector(X, Y, Z);
+                V.Mov_Centro(centro);
+            }
+        }
+        public void SetCentro(Vector vector)
+        {
+            Centro = vector;
+        }
+        public List<Vector> listcen()
+        {
+            List<Vector> list = new List<Vector>();
+            foreach (CPartes v in PartesList)
+            {
+                list.Add(v.Centro);
+            }
+            return list;
         }
     }
 }

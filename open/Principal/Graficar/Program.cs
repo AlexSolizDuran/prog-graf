@@ -11,7 +11,7 @@ namespace Graficar
         {
             var NWS = new NativeWindowSettings()
             {
-                ClientSize = new Vector2i(1000, 800),
+                ClientSize = new Vector2i(800, 800),
                 Title = "Graficar",
                 Flags = ContextFlags.ForwardCompatible,
             };
