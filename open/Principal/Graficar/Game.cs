@@ -13,6 +13,10 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using OpenTK.Mathematics;
 using ImGuiNET;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
+
 
 namespace Graficar
 {
@@ -34,11 +38,13 @@ namespace Graficar
         private double _time;
         private Matrix4 _view;
         private Matrix4 _projection;
-
+        private double _timeX;
+        
 
         public Game(GameWindowSettings gameWindowSettings, NativeWindowSettings nativeWindowSettings) 
             : base(gameWindowSettings, nativeWindowSettings)
         {
+            ClientSize = new Vector2i(Size.X, Size.Y);
             EscenarioList = new List<CEscenario>();
             List<Vector> list1 = new List<Vector>()
             {
@@ -168,13 +174,13 @@ namespace Graficar
             listpar.Add(parte2);
             //figura T
             CObjeto objeto1 = new CObjeto(listpar);
-            Vector centro3 = new Vector(0.5f, 0.5f, 0.0f);
+            Vector centro3 = new Vector(0.0f, 0.0f, 0.0f);
             objeto1.Mov_Centro(centro3);
             List<CObjeto> listob = new List<CObjeto>();
             listob.Add(objeto1);
             //primer escenario
             CEscenario escenario1 = new CEscenario(listob);
-            Vector centro4 = new Vector(-0.5f, -0.5f, 0.0f);
+            Vector centro4 = new Vector(0.0f, 0.0f, 0.0f);
             escenario1.Mov_Centro(centro4);
 
             EscenarioList.Add(escenario1);
@@ -198,33 +204,31 @@ namespace Graficar
 
             _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
             _shader.Use();
-
-            _view = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
-       
-            _projection = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45f), Size.X / (float)Size.Y, 0.1f, 100.0f);
-
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
+            
         }
         protected override void OnRenderFrame (FrameEventArgs e)
         {
-            base.OnRenderFrame (e);
-            _time += 10.0 * e.Time;
-            
-            _shader.Use();
 
-            var model = Matrix4.Identity * Matrix4.CreateRotationY((float)MathHelper.DegreesToRadians(_time));
-            _shader.SetMatrix4("model", model);
-            _shader.SetMatrix4("view", _view);
-            _shader.SetMatrix4("projection", _projection);
+            base.OnRenderFrame (e);
+            
+            _timeX += 10.0f * e.Time;
+            _time +=  0.1* e.Time;
+
+            var transform = Matrix4.Identity;
+            transform = transform * Matrix4.CreateRotationX((float)MathHelper.DegreesToRadians(_timeX));
+            
+            transform = transform * Matrix4.CreateTranslation((float)_time, (float)_time, 0.0f);
+            transform = transform * Matrix4.CreateScale(0.5f,0.5f,0.5f);
+            
+            
+            _shader.SetMatrix4("transform", transform);
+            _shader.Use();
+            
+
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            ImGui.NewFrame();
-            ImGui.Begin("Example Window");
-            if (ImGui.Button("Click Me"))
-            {
-                // Acción cuando se hace clic en el botón
-            }
-            ImGui.End();
-            ImGui.Render();
+           
             foreach (CEscenario escenario in EscenarioList)
             {
                 escenario.Dibujar();
@@ -246,8 +250,8 @@ namespace Graficar
         protected override void OnResize(ResizeEventArgs e)
         {
             base.OnResize(e);
-
-            GL.Viewport(0, 0, Size.X, Size.Y);
+            //GL.Viewport(0, 0, 500, 600);
+            GL.Viewport(0,0, Size.X, Size.Y);
         }
     }
 }
