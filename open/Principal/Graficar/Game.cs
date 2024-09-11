@@ -224,9 +224,9 @@ namespace Graficar
             
             _shader.SetMatrix4("transform", transform);
             _shader.Use();
-            
 
-
+            //esto es la prueba 
+            GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
             GL.Clear(ClearBufferMask.ColorBufferBit);
            
             foreach (CEscenario escenario in EscenarioList)
