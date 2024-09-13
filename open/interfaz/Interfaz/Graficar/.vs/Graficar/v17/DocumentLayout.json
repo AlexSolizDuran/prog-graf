@@ -1,0 +1,151 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\shaders\\shader.vert||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:shaders\\shader.vert||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\cescenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:cescenario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\shaders\\shader.frag||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:shaders\\shader.frag||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\metodo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:metodo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\cpoligono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:cpoligono.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|c:\\disco-d\\github\\prog-graf\\open\\principal\\graficar\\graficar.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{496B2C2A-7519-4C9E-87FB-04A7D83DF3FC}|Graficar.csproj|solutionrelative:graficar.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cs",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Game.cs",
+              "RelativeDocumentMoniker": "Game.cs",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Game.cs",
+              "RelativeToolTip": "Game.cs",
+              "ViewState": "AgIAANcAAAAAAAAAAAAIwOEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-08T22:37:06.029Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "shader.frag",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Shaders\\shader.frag",
+              "RelativeDocumentMoniker": "Shaders\\shader.frag",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Shaders\\shader.frag",
+              "RelativeToolTip": "Shaders\\shader.frag",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-11T00:53:42.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CEscenario.cs",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\CEscenario.cs",
+              "RelativeDocumentMoniker": "CEscenario.cs",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\CEscenario.cs",
+              "RelativeToolTip": "CEscenario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-11T00:53:34.317Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Metodo.cs",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Metodo.cs",
+              "RelativeDocumentMoniker": "Metodo.cs",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Metodo.cs",
+              "RelativeToolTip": "Metodo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T16:57:53.065Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAiwBMAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T16:56:17.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "shader.vert",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Shaders\\shader.vert",
+              "RelativeDocumentMoniker": "Shaders\\shader.vert",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Shaders\\shader.vert",
+              "RelativeToolTip": "Shaders\\shader.vert",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-09-10T15:17:38.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CPoligono.cs",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\CPoligono.cs",
+              "RelativeDocumentMoniker": "CPoligono.cs",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\CPoligono.cs",
+              "RelativeToolTip": "CPoligono.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-10T15:15:32.688Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Graficar.csproj",
+              "DocumentMoniker": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Graficar.csproj",
+              "RelativeDocumentMoniker": "Graficar.csproj",
+              "ToolTip": "C:\\DIsco-D\\github\\prog-graf\\open\\Principal\\Graficar\\Graficar.csproj",
+              "RelativeToolTip": "Graficar.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-09-10T03:10:43.587Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
