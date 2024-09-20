@@ -12,6 +12,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using OpenTK.Windowing.Desktop;
 using System.Text.Json;
 using Newtonsoft.Json;
+using LearnOpenTK.Common;
 
 namespace Graficar
 {
@@ -20,22 +21,51 @@ namespace Graficar
         [JsonProperty]
         public List<Vector> VectorList { get; private set; }
         [JsonProperty]
-        public Vector Centro { get; private set ; }
+        public Vector Centro { get; private set; }
         private float[] Vertices;
         private int VBO;
         private int VAO;
+        private Shader _shader;
+        private Vector3 trasnlacion = new Vector3(0.0f, 0.0f, 0.0f);
+        private Vector3 escalacion = new Vector3(1.0f, 1.0f, 1.0f);
+        private Vector3 rotacion = new Vector3(0.0f, 0.0f, 0.0f);
+        
+        
         public CPoligono() { }
         public CPoligono(List<Vector> list)
         {
             VectorList = list;
             Centro = Metodo.centro(VectorList);
-            
-            
         }
         
         public void SetVector(Vector elem)
         {
             VectorList.Add(elem);
+        }
+        public void shader()
+        {
+            _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
+            _shader.Use();
+        }
+         public void transformaciones(float Time)
+        {
+            float _timeX= Time;
+            float _time = Time * 0.1f;
+            var transform = Matrix4.Identity;
+            transform = transform * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(rotacion.X) * _timeX);
+            transform = transform * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(rotacion.Y) * _timeX);
+            transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(rotacion.Z) * _timeX);
+            transform = transform * Matrix4.CreateTranslation(trasnlacion * _time);
+            transform = transform * Matrix4.CreateScale(escalacion);
+
+            _shader.SetMatrix4("transform", transform);
+            _shader.Use();
+        }
+        public void transformacion(Vector3 trasl, Vector3 esca, Vector3 rota)
+        {
+            trasnlacion = trasl;
+            escalacion = esca;
+            rotacion = rota;
         }
         public void Cargar()
         {

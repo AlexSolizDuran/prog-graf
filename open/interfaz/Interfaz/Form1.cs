@@ -29,7 +29,6 @@ namespace Interfaz
 
             glControl1.Resize += glControl1_Resize;
             glControl1.Paint += glControl1_Paint;
-
             game.OnLoad();
 
         }
@@ -63,6 +62,8 @@ namespace Interfaz
             Vector3 translacion = new Vector3(0.0f, 0.0f, 0.0f);
             Vector3 escalacion = new Vector3(1.0f, 1.0f, 1.0f);
             Vector3 rotacion = new Vector3(0.0f, 0.0f, 0.0f);
+            
+
             if (checkBox1.Checked)
                 translacion = new Vector3(float.Parse(textBox1.Text), float.Parse(textBox2.Text), float.Parse(textBox3.Text));
             if (checkBox2.Checked)
@@ -70,7 +71,16 @@ namespace Interfaz
             if (checkBox3.Checked)
                 rotacion = new Vector3(float.Parse(textBox7.Text), float.Parse(textBox8.Text), float.Parse(textBox9.Text));
 
-            game.trasnformacion(translacion, escalacion, rotacion);
+            if (checkBox4.Checked)
+            {
+                game.trasnformacionparte(translacion, escalacion, rotacion,textBox13.Text);
+            }
+            else
+            {
+                game.trasnformacion(translacion, escalacion, rotacion);
+            }
+            
+            game.OnPaint();
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -6,6 +6,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 using OpenTK.Windowing.Desktop;
 using OpenTK.Mathematics;
 using OpenTK.GLControl;
+using Newtonsoft.Json;
 
 
 namespace Graficar
@@ -13,11 +14,10 @@ namespace Graficar
     internal class Game 
     {
         private GLControl _glcontrol;
-        public List<CEscenario> EscenarioList { get; private set; }
-        private Shader _shader;
+        [JsonProperty]
+        public Dictionary<string,CEscenario> Escenarios { get; private set; }
         private float Time;
-        private float _time;
-        private float _timeX;
+        
         private Vector3 trasnlacion = new Vector3(0.0f,0.0f,0.0f);
         private Vector3 escalacion = new Vector3(1.0f,1.0f,1.0f);
         private Vector3 rotacion = new Vector3(0.0f,0.0f,0.0f);
@@ -25,8 +25,8 @@ namespace Graficar
         public Game(GLControl gLControl) 
         {
             _glcontrol = gLControl;
-            
-            EscenarioList = new List<CEscenario>();
+
+            Escenarios = new Dictionary<string, CEscenario>();
 
             IniciarEscenarios();
         }
@@ -155,31 +155,31 @@ namespace Graficar
             //cubo inferior
             CPartes parte2 = new CPartes(listp2);
             parte2.Mov_Centro(centro1);
-            List<CPartes> listpar = new List<CPartes>();
-            listpar.Add(parte1);
-            listpar.Add(parte2);
+            Dictionary<string, CPartes> listpar = new Dictionary<string, CPartes>();
+            listpar.Add("Cubo 1", parte1);
+            listpar.Add("Cubo 2", parte2);
             //figura T
             CObjeto objeto1 = new CObjeto(listpar);
             Vector centro3 = new Vector(0.0f, 0.0f, 0.0f);
             objeto1.Mov_Centro(centro3);
-            List<CObjeto> listob = new List<CObjeto>();
-            listob.Add(objeto1);
+            Dictionary<string, CObjeto> listob = new Dictionary<string, CObjeto>();
+            listob.Add("Figura T",objeto1);
             //primer escenario
             CEscenario escenario1 = new CEscenario(listob);
             Vector centro4 = new Vector(0.0f, 0.0f, 0.0f);
             escenario1.Mov_Centro(centro4);
 
-            EscenarioList.Add(escenario1);
-
+            Escenarios.Add("Escenario 1",escenario1);
+            
             string lugar = @"..\..\..\vertices.json";
             Metodo.Serializacion(escenario1, lugar);
             //CEscenario escenario2 = Metodo.Deserializacion<CEscenario>(lugar);
-            //escenario2.ObjetoList[0].Mov_Centro(new Vector(0.0f, 0.2f, 0.0f));
-            //EscenarioList.Add(escenario2);
+            //escenario2.Objetos["Figura T"].Mov_Centro(new Vector(0.0f, 0.2f, 0.0f));
+            //Escenarios.Add("Escenario 2",escenario2);
         }
         public void Nuevocentro(Vector centro)
         {
-            EscenarioList[0].Mov_Centro(centro);
+            Escenarios["Escenario 1"].Mov_Centro(centro);
             OnLoad();
         }
         public void OnLoad()
@@ -187,47 +187,34 @@ namespace Graficar
             
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             GL.Enable(EnableCap.DepthTest);
-            foreach (CEscenario escenario in EscenarioList)
+            foreach (var escenario in Escenarios)
             {
-                escenario.Cargar();
+                escenario.Value.Cargar();
+                escenario.Value.shader();
             }
-
-            _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
-            _shader.Use();
-            //GL.PolygonMode(MaterialFace.FrontAndBack, PolygonMode.Line);
-            
         }
         public void OnPaint()
         {
-            _timeX = Time;
-            _time = 0.05f*Time;
-
-            var transform = Matrix4.Identity;
-            transform = transform * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(rotacion.X)* _timeX);
-            transform = transform * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(rotacion.Y)* _timeX);
-            transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(rotacion.Z)* _timeX);
-            transform = transform * Matrix4.CreateTranslation(trasnlacion*_time);
-            transform = transform * Matrix4.CreateScale(escalacion);
-            
-            _shader.SetMatrix4("transform", transform);
-            _shader.Use();
-
-
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-
-            foreach (CEscenario escenario in EscenarioList)
+            foreach (var escenario in Escenarios)
             {
-                escenario.Dibujar();
+                escenario.Value.transformaciones(Time);
+                escenario.Value.Dibujar();
             }
             
             _glcontrol.SwapBuffers();
         }
         public void trasnformacion(Vector3 trasl,Vector3 esca,Vector3 rota)
         {
-            trasnlacion = trasl;
-            escalacion = esca;
-            rotacion = rota;
+            foreach (var escenario in Escenarios)
+            {
+                escenario.Value.transformacion(trasl, esca, rota);
+            }
+        }
+        public void trasnformacionparte(Vector3 trasl, Vector3 esca, Vector3 rota,string parte)
+        {
+            Escenarios["Escenario 1"].Objetos["Figura T"].Partes[parte].transformacion(trasl, esca, rota);
         }
         public void reiniciar()
         {

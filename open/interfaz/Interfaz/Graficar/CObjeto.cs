@@ -12,44 +12,66 @@ namespace Graficar
     internal class CObjeto
     {
         [JsonProperty]
-        public List<CPartes> PartesList {  get; private set; }
+        public Dictionary<string,CPartes> Partes {  get; private set; }
         [JsonProperty]
         public Vector Centro {  get; private set; }
        
         public CObjeto() { }
-        public CObjeto(List<CPartes> list)
+        public CObjeto(Dictionary<string, CPartes> list)
         {
-            PartesList = list;
+            Partes = list;
             Centro = Metodo.centro(listcen());
         }
         public void SetPartes(CPartes elem)
         {
-            PartesList.Add(elem);
+            //Partes.Add(elem);
+        }
+        public void shader()
+        {
+            foreach (var partes in Partes)
+            {
+                partes.Value.shader();
+            }
+        }
+        public void transformaciones(float Time)
+        {
+            foreach (var partes in Partes)
+            {
+                partes.Value.transformaciones(Time);
+            }
+
+        }
+        public void transformacion(Vector3 trasl, Vector3 esca, Vector3 rota)
+        {
+            foreach (var parte in Partes)
+            {
+                parte.Value.transformacion(trasl, esca, rota);                  
+            }
         }
         public void Cargar ()
         {
-            foreach (CPartes partes in PartesList)
+            foreach (var partes in Partes)
             {
-                partes.Cargar();
+                partes.Value.Cargar();
             }
         }
         public void Dibujar()
         {
-            foreach (CPartes partes in PartesList)
+            foreach (var partes in Partes)
             {
-                partes.Dibujar();
+                partes.Value.Dibujar();
             }
         }
         public void Mov_Centro(Vector newcentro)
         {
             
-            foreach (CPartes V in PartesList)
+            foreach (var V in Partes)
             {
-                float X = newcentro.X + V.Centro.X;
-                float Y = newcentro.Y + V.Centro.Y;
-                float Z = newcentro.Z + V.Centro.Z;
+                float X = newcentro.X + V.Value.Centro.X;
+                float Y = newcentro.Y + V.Value.Centro.Y;
+                float Z = newcentro.Z + V.Value.Centro.Z;
                 Vector centro = new Vector(X, Y, Z);
-                V.Mov_Centro(centro);
+                V.Value.Mov_Centro(centro);
             }
         }
         public void SetCentro(Vector vector)
@@ -59,9 +81,9 @@ namespace Graficar
         public List<Vector> listcen()
         {
             List<Vector> list = new List<Vector>();
-            foreach (CPartes v in PartesList)
+            foreach (var v in Partes)
             {
-                list.Add(v.Centro);
+                list.Add(v.Value.Centro);
             }
             return list;
         }

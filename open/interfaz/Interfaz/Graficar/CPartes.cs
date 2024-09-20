@@ -26,6 +26,29 @@ namespace Graficar
         {
             PoligonoList.Add(elem);
         }
+        public void shader()
+        {
+            foreach (CPoligono poligono in PoligonoList)
+            {
+                poligono.shader();
+            }
+        }
+        
+        public void transformaciones(float Time)
+        {
+            foreach (CPoligono poligono in PoligonoList)
+            {
+                poligono.transformaciones(Time);
+            }
+
+        }
+        public void transformacion(Vector3 trasl, Vector3 esca, Vector3 rota)
+        {
+            foreach(var  poligono in PoligonoList)
+            {
+                poligono.transformacion(trasl, esca, rota);
+            }
+        }
         public void Cargar()
         {
             foreach (CPoligono poligono in PoligonoList)

@@ -60,5 +60,41 @@ namespace Graficar
 
             return vector;
         }
+
+        public static object BuscarPorNombre(object contenedor, string nombre)
+        {
+            if (contenedor == null) return null;
+
+            // Verifica si el contenedor es un Dictionary<string, T>
+            var tipoContenedor = contenedor.GetType();
+            if (tipoContenedor.IsGenericType && tipoContenedor.GetGenericTypeDefinition() == typeof(Dictionary<,>))
+            {
+                // Obtiene la instancia del diccionario
+                var claveTipo = tipoContenedor.GetGenericArguments()[0];
+                var valorTipo = tipoContenedor.GetGenericArguments()[1];
+                var diccionario = (System.Collections.IDictionary)contenedor;
+
+                // Recorre el diccionario
+                foreach (var clave in diccionario.Keys)
+                {
+                    var valor = diccionario[clave];
+
+                    // Comprueba si la clave coincide con el nombre buscado
+                    if (clave.ToString() == nombre)
+                    {
+                        return valor;
+                    }
+
+                    // Busca recursivamente en el valor
+                    var resultado = BuscarPorNombre(valor, nombre);
+                    if (resultado != null)
+                    {
+                        return resultado;
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }
