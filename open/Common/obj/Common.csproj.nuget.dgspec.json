@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\open\\Common\\Common.csproj": {}
+    "C:\\Users\\CASA\\prog-graf\\prog-graf\\open\\Common\\Common.csproj": {}
   },
   "projects": {
-    "D:\\open\\Common\\Common.csproj": {
+    "C:\\Users\\CASA\\prog-graf\\prog-graf\\open\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\open\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\CASA\\prog-graf\\prog-graf\\open\\Common\\Common.csproj",
         "projectName": "LearnOpenTK.Common",
-        "projectPath": "D:\\open\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\CASA\\prog-graf\\prog-graf\\open\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\CASA\\.nuget\\packages\\",
-        "outputPath": "D:\\open\\Common\\obj\\",
+        "outputPath": "C:\\Users\\CASA\\prog-graf\\prog-graf\\open\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\CASA\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
