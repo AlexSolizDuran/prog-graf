@@ -59,6 +59,7 @@ namespace Interfaz
             contextMenuStrip1 = new ContextMenuStrip(components);
             textBox13 = new TextBox();
             checkBox4 = new CheckBox();
+            label4 = new Label();
             SuspendLayout();
             // 
             // glControl1
@@ -73,7 +74,7 @@ namespace Interfaz
             glControl1.Name = "glControl1";
             glControl1.Profile = OpenTK.Windowing.Common.ContextProfile.Core;
             glControl1.SharedContext = null;
-            glControl1.Size = new Size(508, 418);
+            glControl1.Size = new Size(525, 456);
             glControl1.TabIndex = 0;
             glControl1.Load += glControl1_Load;
             glControl1.Paint += glControl1_Paint;
@@ -87,7 +88,7 @@ namespace Interfaz
             // 
             // button1
             // 
-            button1.Location = new Point(14, 295);
+            button1.Location = new Point(14, 383);
             button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
             button1.Size = new Size(86, 29);
@@ -98,7 +99,7 @@ namespace Interfaz
             // 
             // button2
             // 
-            button2.Location = new Point(14, 332);
+            button2.Location = new Point(14, 420);
             button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
             button2.Size = new Size(86, 29);
@@ -109,7 +110,7 @@ namespace Interfaz
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(110, 62);
+            textBox1.Location = new Point(124, 150);
             textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(35, 26);
@@ -117,7 +118,7 @@ namespace Interfaz
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(153, 62);
+            textBox2.Location = new Point(167, 150);
             textBox2.Margin = new Padding(3, 4, 3, 4);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(35, 26);
@@ -125,7 +126,7 @@ namespace Interfaz
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(195, 62);
+            textBox3.Location = new Point(209, 150);
             textBox3.Margin = new Padding(3, 4, 3, 4);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(35, 26);
@@ -133,7 +134,7 @@ namespace Interfaz
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(110, 99);
+            textBox4.Location = new Point(124, 187);
             textBox4.Margin = new Padding(3, 4, 3, 4);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(35, 26);
@@ -141,7 +142,7 @@ namespace Interfaz
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(153, 99);
+            textBox5.Location = new Point(167, 187);
             textBox5.Margin = new Padding(3, 4, 3, 4);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(35, 26);
@@ -149,7 +150,7 @@ namespace Interfaz
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(195, 99);
+            textBox6.Location = new Point(209, 187);
             textBox6.Margin = new Padding(3, 4, 3, 4);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(35, 26);
@@ -157,7 +158,7 @@ namespace Interfaz
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(110, 135);
+            textBox7.Location = new Point(124, 223);
             textBox7.Margin = new Padding(3, 4, 3, 4);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(35, 26);
@@ -165,7 +166,7 @@ namespace Interfaz
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(153, 135);
+            textBox8.Location = new Point(167, 223);
             textBox8.Margin = new Padding(3, 4, 3, 4);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(35, 26);
@@ -173,7 +174,7 @@ namespace Interfaz
             // 
             // textBox9
             // 
-            textBox9.Location = new Point(195, 135);
+            textBox9.Location = new Point(209, 223);
             textBox9.Margin = new Padding(3, 4, 3, 4);
             textBox9.Name = "textBox9";
             textBox9.Size = new Size(35, 26);
@@ -182,7 +183,7 @@ namespace Interfaz
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(130, 34);
+            label1.Location = new Point(144, 122);
             label1.Name = "label1";
             label1.Size = new Size(18, 20);
             label1.TabIndex = 12;
@@ -191,7 +192,7 @@ namespace Interfaz
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(172, 34);
+            label2.Location = new Point(186, 122);
             label2.Name = "label2";
             label2.Size = new Size(17, 20);
             label2.TabIndex = 13;
@@ -200,7 +201,7 @@ namespace Interfaz
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(214, 34);
+            label3.Location = new Point(228, 122);
             label3.Name = "label3";
             label3.Size = new Size(18, 20);
             label3.TabIndex = 14;
@@ -208,7 +209,7 @@ namespace Interfaz
             // 
             // button3
             // 
-            button3.Location = new Point(130, 172);
+            button3.Location = new Point(144, 260);
             button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
             button3.Size = new Size(86, 29);
@@ -220,7 +221,7 @@ namespace Interfaz
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(0, 63);
+            checkBox1.Location = new Point(14, 151);
             checkBox1.Margin = new Padding(3, 4, 3, 4);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(92, 24);
@@ -231,7 +232,7 @@ namespace Interfaz
             // checkBox2
             // 
             checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(0, 100);
+            checkBox2.Location = new Point(14, 188);
             checkBox2.Margin = new Padding(3, 4, 3, 4);
             checkBox2.Name = "checkBox2";
             checkBox2.Size = new Size(97, 24);
@@ -242,7 +243,7 @@ namespace Interfaz
             // checkBox3
             // 
             checkBox3.AutoSize = true;
-            checkBox3.Location = new Point(0, 134);
+            checkBox3.Location = new Point(14, 222);
             checkBox3.Margin = new Padding(3, 4, 3, 4);
             checkBox3.Name = "checkBox3";
             checkBox3.Size = new Size(83, 24);
@@ -253,7 +254,7 @@ namespace Interfaz
             // 
             // textBox10
             // 
-            textBox10.Location = new Point(110, 224);
+            textBox10.Location = new Point(124, 312);
             textBox10.Margin = new Padding(3, 4, 3, 4);
             textBox10.Name = "textBox10";
             textBox10.Size = new Size(35, 26);
@@ -261,7 +262,7 @@ namespace Interfaz
             // 
             // textBox11
             // 
-            textBox11.Location = new Point(153, 224);
+            textBox11.Location = new Point(167, 312);
             textBox11.Margin = new Padding(3, 4, 3, 4);
             textBox11.Name = "textBox11";
             textBox11.Size = new Size(35, 26);
@@ -269,7 +270,7 @@ namespace Interfaz
             // 
             // textBox12
             // 
-            textBox12.Location = new Point(195, 224);
+            textBox12.Location = new Point(209, 312);
             textBox12.Margin = new Padding(3, 4, 3, 4);
             textBox12.Name = "textBox12";
             textBox12.Size = new Size(35, 26);
@@ -277,7 +278,7 @@ namespace Interfaz
             // 
             // button4
             // 
-            button4.Location = new Point(130, 261);
+            button4.Location = new Point(144, 349);
             button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
             button4.Size = new Size(86, 29);
@@ -295,7 +296,7 @@ namespace Interfaz
             // 
             // textBox13
             // 
-            textBox13.Location = new Point(4, 8);
+            textBox13.Location = new Point(14, 32);
             textBox13.Name = "textBox13";
             textBox13.Size = new Size(120, 26);
             textBox13.TabIndex = 26;
@@ -303,18 +304,28 @@ namespace Interfaz
             // checkBox4
             // 
             checkBox4.AutoSize = true;
-            checkBox4.Location = new Point(130, 7);
+            checkBox4.Location = new Point(140, 31);
             checkBox4.Name = "checkBox4";
             checkBox4.Size = new Size(61, 24);
             checkBox4.TabIndex = 27;
             checkBox4.Text = "Parte";
             checkBox4.UseVisualStyleBackColor = true;
             // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(14, 9);
+            label4.Name = "label4";
+            label4.Size = new Size(141, 20);
+            label4.TabIndex = 28;
+            label4.Text = "\"Cubo 1\" - \"Cubo 2\"";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(767, 423);
+            ClientSize = new Size(784, 461);
+            Controls.Add(label4);
             Controls.Add(checkBox4);
             Controls.Add(textBox13);
             Controls.Add(button4);
@@ -378,5 +389,6 @@ namespace Interfaz
         private ContextMenuStrip contextMenuStrip1;
         private TextBox textBox13;
         private CheckBox checkBox4;
+        private Label label4;
     }
 }
