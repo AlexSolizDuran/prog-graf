@@ -15,9 +15,9 @@ namespace Graficar
     {
         private GLControl _glcontrol;
         [JsonProperty]
-        public Dictionary<string,CEscenario> Escenarios { get; private set; }
-        private float Time;
         
+        public Dictionary<string,CEscenario> Escenarios { get; private set; }
+
         private Vector3 trasnlacion = new Vector3(0.0f,0.0f,0.0f);
         private Vector3 escalacion = new Vector3(1.0f,1.0f,1.0f);
         private Vector3 rotacion = new Vector3(0.0f,0.0f,0.0f);
@@ -192,6 +192,7 @@ namespace Graficar
                 escenario.Value.Cargar();
                 escenario.Value.shader();
             }
+            
         }
         public void OnPaint()
         {
@@ -199,7 +200,7 @@ namespace Graficar
 
             foreach (var escenario in Escenarios)
             {
-                escenario.Value.transformaciones(Time);
+                escenario.Value.transformaciones();
                 escenario.Value.Dibujar();
             }
             
@@ -214,16 +215,9 @@ namespace Graficar
         }
         public void trasnformacionparte(Vector3 trasl, Vector3 esca, Vector3 rota,string parte)
         {
-            Escenarios["Escenario 1"].Objetos["Figura T"].Partes[parte].transformacion(trasl, esca, rota);
+            //Escenarios["Escenario 1"].Objetos["Figura T"].Partes[parte].transformacion(trasl, esca, rota);
         }
-        public void reiniciar()
-        {
-            Time = 1;
-        }
-        public void tiempo()
-        {
-            Time += 1;
-        }
+       
 
         public void OnResize()
         {

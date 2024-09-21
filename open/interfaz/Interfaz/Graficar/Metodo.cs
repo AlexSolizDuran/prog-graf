@@ -8,11 +8,22 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Xml.XPath;
+using OpenTK.Graphics.OpenGL4;
+using LearnOpenTK.Common;
 
 namespace Graficar
 {   
     internal static class Metodo
     {
+        public static float Time {  get; private set; } = 1f;
+        public static void Tiempo()
+        {
+            Time += 1f;
+        }
+        public static void reiniciar()
+        {
+            Time = 1f;
+        }
         public static void Serializacion<T>(T obj, string filePath)
         {
             string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
@@ -96,5 +107,6 @@ namespace Graficar
 
             return null;
         }
+       
     }
 }

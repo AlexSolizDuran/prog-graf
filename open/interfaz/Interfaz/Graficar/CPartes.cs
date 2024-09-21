@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
+using OpenTK.Graphics.OpenGL4;
+using LearnOpenTK.Common;
 
 using Newtonsoft.Json;
 namespace Graficar
@@ -15,6 +17,7 @@ namespace Graficar
         public List<CPoligono> PoligonoList {  get; private  set; }
         [JsonProperty]
         public Vector Centro { get; private set; }
+        
         public CPartes() { }
         
         public CPartes(List<CPoligono> list)
@@ -26,29 +29,7 @@ namespace Graficar
         {
             PoligonoList.Add(elem);
         }
-        public void shader()
-        {
-            foreach (CPoligono poligono in PoligonoList)
-            {
-                poligono.shader();
-            }
-        }
         
-        public void transformaciones(float Time)
-        {
-            foreach (CPoligono poligono in PoligonoList)
-            {
-                poligono.transformaciones(Time);
-            }
-
-        }
-        public void transformacion(Vector3 trasl, Vector3 esca, Vector3 rota)
-        {
-            foreach(var  poligono in PoligonoList)
-            {
-                poligono.transformacion(trasl, esca, rota);
-            }
-        }
         public void Cargar()
         {
             foreach (CPoligono poligono in PoligonoList)
@@ -58,6 +39,7 @@ namespace Graficar
         }
         public void Dibujar()
         {
+            
             foreach (CPoligono poligono in PoligonoList)
             {
                 poligono.Dibujar();

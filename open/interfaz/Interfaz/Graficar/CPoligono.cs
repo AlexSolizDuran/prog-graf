@@ -25,11 +25,6 @@ namespace Graficar
         private float[] Vertices;
         private int VBO;
         private int VAO;
-        private Shader _shader;
-        private Vector3 trasnlacion = new Vector3(0.0f, 0.0f, 0.0f);
-        private Vector3 escalacion = new Vector3(1.0f, 1.0f, 1.0f);
-        private Vector3 rotacion = new Vector3(0.0f, 0.0f, 0.0f);
-        
         
         public CPoligono() { }
         public CPoligono(List<Vector> list)
@@ -41,31 +36,6 @@ namespace Graficar
         public void SetVector(Vector elem)
         {
             VectorList.Add(elem);
-        }
-        public void shader()
-        {
-            _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
-            _shader.Use();
-        }
-         public void transformaciones(float Time)
-        {
-            float _timeX= Time;
-            float _time = Time * 0.1f;
-            var transform = Matrix4.Identity;
-            transform = transform * Matrix4.CreateRotationX(MathHelper.DegreesToRadians(rotacion.X) * _timeX);
-            transform = transform * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(rotacion.Y) * _timeX);
-            transform = transform * Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(rotacion.Z) * _timeX);
-            transform = transform * Matrix4.CreateTranslation(trasnlacion * _time);
-            transform = transform * Matrix4.CreateScale(escalacion);
-
-            _shader.SetMatrix4("transform", transform);
-            _shader.Use();
-        }
-        public void transformacion(Vector3 trasl, Vector3 esca, Vector3 rota)
-        {
-            trasnlacion = trasl;
-            escalacion = esca;
-            rotacion = rota;
         }
         public void Cargar()
         {
@@ -95,7 +65,7 @@ namespace Graficar
                 float X1 = VectorList[i].X + newcentro.X;
                 float Y1 = VectorList[i].Y + newcentro.Y;
                 float Z1 = VectorList[i].Z + newcentro.Z;
-                Vector vector = new Vector(X1, Y1, Z1);
+                Vector vector = new(X1, Y1, Z1);
                 VectorList[i] = vector;
             }
             Centro = Metodo.centro(VectorList);

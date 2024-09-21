@@ -38,11 +38,11 @@ namespace Graficar
             }
 
         }
-        public void transformaciones(float Time)
+        public void transformaciones()
         {
             foreach (var objeto in Objetos)
             {
-                objeto.Value.transformaciones(Time);
+                objeto.Value.transformaciones();
             }
 
         }
